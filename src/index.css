@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+  
+  body {
+    @apply antialiased;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-md bg-glass-light border border-glass rounded-glass shadow-glass;
+  }
+  
+  .glass-card-elevated {
+    @apply backdrop-blur-lg bg-glass-medium border border-glass rounded-glass-lg shadow-glass-elevated;
+  }
+  
+  .glass-button {
+    @apply backdrop-blur-sm bg-glass-light border border-glass rounded-lg px-4 py-2 font-medium transition-all duration-200 hover:bg-glass-medium hover:shadow-glass active:scale-95;
+  }
+  
+  .glass-button-primary {
+    @apply glass-button bg-blue-500/80 text-white border-blue-400/30 hover:bg-blue-600/80;
+  }
+  
+  .glass-button-secondary {
+    @apply glass-button bg-gray-500/60 text-gray-100 border-gray-400/30 hover:bg-gray-600/60;
+  }
+  
+  .glass-input {
+    @apply backdrop-blur-sm bg-glass-light border border-glass rounded-lg px-3 py-2 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200;
+  }
+  
+  .glass-select {
+    @apply glass-input appearance-none cursor-pointer;
+  }
+  
+  .glass-modal {
+    @apply backdrop-blur-xl bg-glass-heavy border border-glass rounded-glass-xl shadow-glass-elevated;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .glass-border {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-border-dark {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
