@@ -1,76 +1,89 @@
+import { useState } from 'react';
 import { AppProviders } from '@/providers';
-import { GlassCard, GlassButton } from '@/components/ui';
-import { Home, Plus, Settings, BarChart3, Users } from 'lucide-react';
+import { GlassCard, GlassButton, GlassModal, GlassNavigation, NavigationItem } from '@/components/ui';
+import { Home, Plus, Settings, BarChart3, Users, ListTodo } from 'lucide-react';
 import { useTask } from '@/providers';
+import { TaskForm, TaskList } from '@/features/task-management';
+import { AnalyticsDashboard } from '@/features/analytics';
 
 function AppContent() {
   const { state, actions } = useTask();
+  const [currentView, setCurrentView] = useState('dashboard');
+  const [showTaskForm, setShowTaskForm] = useState(false);
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 p-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <header className="mb-8">
-          <GlassCard className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-white mb-2">
-                  Family Task Manager
-                </h1>
-                <p className="text-white/80">
-                  Fair distribution of household responsibilities
-                </p>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="text-right text-sm text-white/80">
-                  {state.lastSaved ? (
-                    <p>Last saved: {state.lastSaved.toLocaleTimeString()}</p>
-                  ) : (
-                    <p>No saves yet</p>
-                  )}
-                  {state.hasUnsavedChanges && (
-                    <p className="text-yellow-300">Unsaved changes</p>
-                  )}
-                </div>
-                
-                <GlassButton
-                  onClick={actions.saveData}
-                  disabled={!state.hasUnsavedChanges}
-                  icon={Settings}
-                >
-                  Save
-                </GlassButton>
-              </div>
+  const navigationItems: NavigationItem[] = [
+    {
+      id: 'dashboard',
+      label: 'Dashboard',
+      icon: Home,
+      active: currentView === 'dashboard'
+    },
+    {
+      id: 'tasks',
+      label: 'Tasks',
+      icon: ListTodo,
+      active: currentView === 'tasks',
+      badge: state.tasks.length > 0 ? state.tasks.length : undefined
+    },
+    {
+      id: 'analytics',
+      label: 'Analytics',
+      icon: BarChart3,
+      active: currentView === 'analytics'
+    },
+    {
+      id: 'family',
+      label: 'Family',
+      icon: Users,
+      active: currentView === 'family'
+    },
+    {
+      id: 'settings',
+      label: 'Settings',
+      icon: Settings,
+      active: currentView === 'settings'
+    }
+  ];
+
+  const handleNavigation = (item: NavigationItem) => {
+    setCurrentView(item.id);
+  };
+
+  const renderCurrentView = () => {
+    switch (currentView) {
+      case 'tasks':
+        return (
+          <TaskList 
+            onEditTask={() => setShowTaskForm(true)}
+            onViewTask={() => {}} 
+          />
+        );
+      
+      case 'analytics':
+        return <AnalyticsDashboard />;
+      
+      case 'family':
+        return (
+          <GlassCard className="p-8">
+            <div className="text-center text-white">
+              <h2 className="text-2xl font-bold mb-4">Family Management</h2>
+              <p className="text-white/80">Coming soon: Family member management</p>
             </div>
           </GlassCard>
-        </header>
-
-        {/* Navigation */}
-        <nav className="mb-8">
-          <GlassCard className="p-4">
-            <div className="flex items-center justify-center gap-4">
-              <GlassButton variant="ghost" icon={Home}>
-                Dashboard
-              </GlassButton>
-              <GlassButton variant="ghost" icon={Plus}>
-                Add Task
-              </GlassButton>
-              <GlassButton variant="ghost" icon={BarChart3}>
-                Analytics
-              </GlassButton>
-              <GlassButton variant="ghost" icon={Users}>
-                Family
-              </GlassButton>
-              <GlassButton variant="ghost" icon={Settings}>
-                Settings
-              </GlassButton>
+        );
+      
+      case 'settings':
+        return (
+          <GlassCard className="p-8">
+            <div className="text-center text-white">
+              <h2 className="text-2xl font-bold mb-4">Settings</h2>
+              <p className="text-white/80">Coming soon: Application settings</p>
             </div>
           </GlassCard>
-        </nav>
-
-        {/* Main Content */}
-        <main>
+        );
+      
+      default: // dashboard
+        return (
           <GlassCard className="p-8">
             <div className="text-center text-white">
               {state.loading ? (
@@ -131,8 +144,105 @@ function AppContent() {
               )}
             </div>
           </GlassCard>
-        </main>
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800">
+      <div className="flex h-screen">
+        {/* Desktop Sidebar Navigation */}
+        <div className="hidden md:block w-64 p-4">
+          <GlassNavigation
+            variant="sidebar"
+            items={navigationItems}
+            onItemClick={handleNavigation}
+            collapsible
+            className="h-full"
+          />
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="p-4 md:p-6">
+            <GlassCard className="p-4 md:p-6">
+              <div className="flex items-center justify-between">
+                {/* Mobile Navigation */}
+                <div className="md:hidden">
+                  <GlassNavigation
+                    variant="mobile"
+                    items={navigationItems}
+                    onItemClick={handleNavigation}
+                  />
+                </div>
+
+                <div className="flex-1 md:flex-none">
+                  <h1 className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">
+                    Family Task Manager
+                  </h1>
+                  <p className="text-white/80 text-sm md:text-base">
+                    Fair distribution of household responsibilities
+                  </p>
+                </div>
+                
+                <div className="flex items-center gap-2 md:gap-4">
+                  <div className="hidden md:block text-right text-sm text-white/80">
+                    {state.lastSaved ? (
+                      <p>Last saved: {state.lastSaved.toLocaleTimeString()}</p>
+                    ) : (
+                      <p>No saves yet</p>
+                    )}
+                    {state.hasUnsavedChanges && (
+                      <p className="text-yellow-300">Unsaved changes</p>
+                    )}
+                  </div>
+                  
+                  <GlassButton
+                    onClick={() => setShowTaskForm(true)}
+                    icon={Plus}
+                    size="sm"
+                  >
+                    <span className="hidden md:inline">Add Task</span>
+                  </GlassButton>
+                  
+                  <GlassButton
+                    onClick={actions.saveData}
+                    disabled={!state.hasUnsavedChanges}
+                    variant="secondary"
+                    size="sm"
+                  >
+                    <span className="hidden md:inline">Save</span>
+                    <span className="md:hidden">💾</span>
+                  </GlassButton>
+                </div>
+              </div>
+            </GlassCard>
+          </header>
+
+          {/* Main Content Area */}
+          <main className="flex-1 p-4 md:p-6 overflow-auto">
+            {renderCurrentView()}
+          </main>
+        </div>
       </div>
+
+      {/* Mobile Bottom Navigation */}
+      <GlassNavigation
+        variant="bottom"
+        items={navigationItems}
+        onItemClick={handleNavigation}
+      />
+
+      {/* Task Form Modal */}
+      <GlassModal
+        isOpen={showTaskForm}
+        onClose={() => setShowTaskForm(false)}
+        title="Create New Task"
+        size="lg"
+      >
+        <TaskForm onClose={() => setShowTaskForm(false)} />
+      </GlassModal>
     </div>
   );
 }

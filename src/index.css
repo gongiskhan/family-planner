@@ -16,15 +16,15 @@
 
 @layer components {
   .glass-card {
-    @apply backdrop-blur-md bg-glass-light border border-glass rounded-glass shadow-glass;
+    @apply backdrop-blur-md bg-glass-light border-glass rounded-glass shadow-glass;
   }
   
   .glass-card-elevated {
-    @apply backdrop-blur-lg bg-glass-medium border border-glass rounded-glass-lg shadow-glass-elevated;
+    @apply backdrop-blur-lg bg-glass-medium border-glass rounded-glass-lg shadow-glass-elevated;
   }
   
   .glass-button {
-    @apply backdrop-blur-sm bg-glass-light border border-glass rounded-lg px-4 py-2 font-medium transition-all duration-200 hover:bg-glass-medium hover:shadow-glass active:scale-95;
+    @apply backdrop-blur-sm bg-glass-light border-glass rounded-lg px-4 py-2 font-medium transition-all duration-200 hover:bg-glass-medium hover:shadow-glass active:scale-95;
   }
   
   .glass-button-primary {
@@ -36,7 +36,7 @@
   }
   
   .glass-input {
-    @apply backdrop-blur-sm bg-glass-light border border-glass rounded-lg px-3 py-2 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200;
+    @apply backdrop-blur-sm bg-glass-light border-glass rounded-lg px-3 py-2 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200;
   }
   
   .glass-select {
@@ -44,7 +44,7 @@
   }
   
   .glass-modal {
-    @apply backdrop-blur-xl bg-glass-heavy border border-glass rounded-glass-xl shadow-glass-elevated;
+    @apply backdrop-blur-xl bg-glass-heavy border-glass rounded-glass-xl shadow-glass-elevated;
   }
 }
 
@@ -57,11 +57,11 @@
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
   
-  .glass-border {
+  .border-glass {
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
-  .glass-border-dark {
+  .border-glass-dark {
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }

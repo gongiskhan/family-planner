@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GlassCard, GlassButton, GlassInput, GlassSelect, GlassSelectOption } from '@/components/ui';
+import { GlassCard, GlassButton, GlassInput, GlassSelect, GlassSelectOption, GlassCheckbox, BulkOperationsToolbar, BulkAction } from '@/components/ui';
 import { Task, TaskFrequency } from '@/types';
 import { useTask } from '@/providers';
 import { sortTasks, filterTasks, getFrequencyDisplayName } from '@/utils/taskCalculations';
@@ -11,7 +11,10 @@ import {
   Trash2, 
   Eye,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  CheckSquare,
+  Copy,
+  UserCheck,
 } from 'lucide-react';
 import TaskCard from './TaskCard';
 
@@ -30,6 +33,8 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedTaskIds, setSelectedTaskIds] = useState<Set<string>>(new Set());
+  const [bulkMode, setBulkMode] = useState(false);
 
   // Filter and sort tasks
   const filteredAndSortedTasks = useMemo(() => {
@@ -106,6 +111,98 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
     setSortOrder('asc');
   };
 
+  // Bulk operations handlers
+  const toggleBulkMode = () => {
+    setBulkMode(!bulkMode);
+    setSelectedTaskIds(new Set());
+  };
+
+  const handleTaskSelect = (taskId: string) => {
+    const newSelected = new Set(selectedTaskIds);
+    if (newSelected.has(taskId)) {
+      newSelected.delete(taskId);
+    } else {
+      newSelected.add(taskId);
+    }
+    setSelectedTaskIds(newSelected);
+  };
+
+  const handleSelectAll = () => {
+    const allTaskIds = new Set(filteredAndSortedTasks.map(task => task.id));
+    setSelectedTaskIds(allTaskIds);
+  };
+
+  const handleSelectNone = () => {
+    setSelectedTaskIds(new Set());
+  };
+
+  const handleBulkDelete = (taskIds: string[]) => {
+    if (window.confirm(`Are you sure you want to delete ${taskIds.length} tasks? This action cannot be undone.`)) {
+      taskIds.forEach(id => actions.deleteTask(id));
+      setSelectedTaskIds(new Set());
+    }
+  };
+
+  const handleBulkDuplicate = (taskIds: string[]) => {
+    taskIds.forEach(id => {
+      const task = state.tasks.find(t => t.id === id);
+      if (task) {
+        const duplicatedTask = {
+          ...task,
+          id: `${task.id}-copy-${Date.now()}`,
+          title: `${task.title} (Copy)`,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+        actions.addTask(duplicatedTask);
+      }
+    });
+    setSelectedTaskIds(new Set());
+  };
+
+  const handleBulkAssign = (taskIds: string[], assignment: 'goncalo' | 'marilia') => {
+    taskIds.forEach(id => {
+      const task = state.tasks.find(t => t.id === id);
+      if (task) {
+        actions.updateTask(id, { assignment });
+      }
+    });
+    setSelectedTaskIds(new Set());
+  };
+
+  const bulkActions: BulkAction[] = [
+    {
+      id: 'delete',
+      label: 'Delete',
+      icon: Trash2,
+      variant: 'destructive',
+      onClick: handleBulkDelete,
+      requiresConfirmation: true,
+      confirmationMessage: `Are you sure you want to delete ${selectedTaskIds.size} selected tasks? This action cannot be undone.`
+    },
+    {
+      id: 'duplicate',
+      label: 'Duplicate',
+      icon: Copy,
+      onClick: handleBulkDuplicate
+    },
+    {
+      id: 'assign-goncalo',
+      label: 'Assign to Gonçalo',
+      icon: UserCheck,
+      onClick: (taskIds) => handleBulkAssign(taskIds, 'goncalo')
+    },
+    {
+      id: 'assign-marilia',
+      label: 'Assign to Marília',
+      icon: UserCheck,
+      onClick: (taskIds) => handleBulkAssign(taskIds, 'marilia')
+    }
+  ];
+
+  const isAllSelected = selectedTaskIds.size === filteredAndSortedTasks.length && filteredAndSortedTasks.length > 0;
+  const isPartiallySelected = selectedTaskIds.size > 0 && selectedTaskIds.size < filteredAndSortedTasks.length;
+
   return (
     <div className="space-y-6">
       {/* Header and Controls */}
@@ -119,6 +216,15 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
           </div>
 
           <div className="flex items-center gap-3">
+            <GlassButton
+              variant={bulkMode ? 'primary' : 'ghost'}
+              size="sm"
+              onClick={toggleBulkMode}
+              icon={CheckSquare}
+            >
+              {bulkMode ? 'Exit Select' : 'Select'}
+            </GlassButton>
+
             <GlassButton
               variant="ghost"
               size="sm"
@@ -231,13 +337,25 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="relative"
               >
+                {bulkMode && (
+                  <div className="absolute top-3 left-3 z-10">
+                    <GlassCheckbox
+                      checked={selectedTaskIds.has(task.id)}
+                      onChange={() => handleTaskSelect(task.id)}
+                      size="md"
+                    />
+                  </div>
+                )}
                 <TaskCard
                   task={task}
                   category={state.categories.find(cat => cat.id === task.category)}
                   onEdit={() => onEditTask?.(task)}
                   onView={() => onViewTask?.(task)}
                   onDelete={() => handleDeleteTask(task.id)}
+                  className={bulkMode ? 'pl-12' : ''}
+                  disabled={bulkMode}
                 />
               </motion.div>
             ))}
@@ -250,12 +368,24 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-white/10">
+                  {bulkMode && (
+                    <th className="text-left p-4 text-white font-semibold w-12">
+                      <GlassCheckbox
+                        checked={isAllSelected}
+                        indeterminate={isPartiallySelected}
+                        onChange={isAllSelected ? handleSelectNone : handleSelectAll}
+                        size="md"
+                      />
+                    </th>
+                  )}
                   <th className="text-left p-4 text-white font-semibold">Task</th>
                   <th className="text-left p-4 text-white font-semibold">Category</th>
                   <th className="text-left p-4 text-white font-semibold">Frequency</th>
                   <th className="text-left p-4 text-white font-semibold">Points</th>
                   <th className="text-left p-4 text-white font-semibold">Assignment</th>
-                  <th className="text-right p-4 text-white font-semibold">Actions</th>
+                  {!bulkMode && (
+                    <th className="text-right p-4 text-white font-semibold">Actions</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -274,6 +404,15 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
                         transition={{ duration: 0.2, delay: index * 0.02 }}
                         className="border-b border-white/5 hover:bg-white/5 transition-colors"
                       >
+                        {bulkMode && (
+                          <td className="p-4">
+                            <GlassCheckbox
+                              checked={selectedTaskIds.has(task.id)}
+                              onChange={() => handleTaskSelect(task.id)}
+                              size="md"
+                            />
+                          </td>
+                        )}
                         <td className="p-4">
                           <div>
                             <p className="font-semibold text-white">{task.title}</p>
@@ -303,34 +442,36 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
                              task.assignment === 'marilia' ? 'Marília' : 'Tie'}
                           </span>
                         </td>
-                        <td className="p-4">
-                          <div className="flex items-center justify-end gap-2">
-                            <GlassButton
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => onViewTask?.(task)}
-                              icon={Eye}
-                            >
-                              <span className="sr-only">View</span>
-                            </GlassButton>
-                            <GlassButton
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => onEditTask?.(task)}
-                              icon={Edit3}
-                            >
-                              <span className="sr-only">Edit</span>
-                            </GlassButton>
-                            <GlassButton
-                              size="sm"
-                              variant="destructive"
-                              onClick={() => handleDeleteTask(task.id)}
-                              icon={Trash2}
-                            >
-                              <span className="sr-only">Delete</span>
-                            </GlassButton>
-                          </div>
-                        </td>
+                        {!bulkMode && (
+                          <td className="p-4">
+                            <div className="flex items-center justify-end gap-2">
+                              <GlassButton
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => onViewTask?.(task)}
+                                icon={Eye}
+                              >
+                                <span className="sr-only">View</span>
+                              </GlassButton>
+                              <GlassButton
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => onEditTask?.(task)}
+                                icon={Edit3}
+                              >
+                                <span className="sr-only">Edit</span>
+                              </GlassButton>
+                              <GlassButton
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => handleDeleteTask(task.id)}
+                                icon={Trash2}
+                              >
+                                <span className="sr-only">Delete</span>
+                              </GlassButton>
+                            </div>
+                          </td>
+                        )}
                       </motion.tr>
                     );
                   })}
@@ -340,6 +481,24 @@ export default function TaskList({ onEditTask, onViewTask }: TaskListProps) {
           </div>
         </GlassCard>
       )}
+
+      {/* Bulk Operations Toolbar */}
+      <AnimatePresence>
+        {bulkMode && selectedTaskIds.size > 0 && (
+          <BulkOperationsToolbar
+            selectedCount={selectedTaskIds.size}
+            totalCount={filteredAndSortedTasks.length}
+            onSelectAll={handleSelectAll}
+            onSelectNone={handleSelectNone}
+            onClose={() => {
+              setSelectedTaskIds(new Set());
+              setBulkMode(false);
+            }}
+            actions={bulkActions}
+            selectedIds={Array.from(selectedTaskIds)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -18,9 +18,11 @@ interface TaskCardProps {
   onEdit?: () => void;
   onView?: () => void;
   onDelete?: () => void;
+  className?: string;
+  disabled?: boolean;
 }
 
-export default function TaskCard({ task, category, onEdit, onView, onDelete }: TaskCardProps) {
+export default function TaskCard({ task, category, onEdit, onView, onDelete, className, disabled }: TaskCardProps) {
   const getAssignmentDisplay = () => {
     switch (task.assignment) {
       case 'goncalo':
@@ -42,7 +44,7 @@ export default function TaskCard({ task, category, onEdit, onView, onDelete }: T
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
     >
-      <GlassCard className="p-6 h-full" hover>
+      <GlassCard className={`p-6 h-full ${className || ''}`} hover={!disabled}>
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
@@ -137,36 +139,38 @@ export default function TaskCard({ task, category, onEdit, onView, onDelete }: T
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-between gap-2 pt-3 border-t border-white/10">
-          <GlassButton
-            size="sm"
-            variant="ghost"
-            onClick={onView}
-            icon={Eye}
-            className="flex-1"
-          >
-            View
-          </GlassButton>
-          
-          <GlassButton
-            size="sm"
-            variant="secondary"
-            onClick={onEdit}
-            icon={Edit3}
-            className="flex-1"
-          >
-            Edit
-          </GlassButton>
-          
-          <GlassButton
-            size="sm"
-            variant="destructive"
-            onClick={onDelete}
-            icon={Trash2}
-          >
-            <span className="sr-only">Delete</span>
-          </GlassButton>
-        </div>
+        {!disabled && (
+          <div className="flex items-center justify-between gap-2 pt-3 border-t border-white/10">
+            <GlassButton
+              size="sm"
+              variant="ghost"
+              onClick={onView}
+              icon={Eye}
+              className="flex-1"
+            >
+              View
+            </GlassButton>
+            
+            <GlassButton
+              size="sm"
+              variant="secondary"
+              onClick={onEdit}
+              icon={Edit3}
+              className="flex-1"
+            >
+              Edit
+            </GlassButton>
+            
+            <GlassButton
+              size="sm"
+              variant="destructive"
+              onClick={onDelete}
+              icon={Trash2}
+            >
+              <span className="sr-only">Delete</span>
+            </GlassButton>
+          </div>
+        )}
       </GlassCard>
     </motion.div>
   );

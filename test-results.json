@@ -192,12 +192,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 845,
+                      "duration": 813,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:23.454Z",
+                      "startTime": "2025-07-23T14:11:14.986Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -226,12 +226,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 859,
+                      "duration": 811,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:23.446Z",
+                      "startTime": "2025-07-23T14:11:14.988Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -260,12 +260,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 1438,
+                      "duration": 1807,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:23.454Z",
+                      "startTime": "2025-07-23T14:11:14.989Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -294,12 +294,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 1729,
+                      "duration": 2037,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:23.455Z",
+                      "startTime": "2025-07-23T14:11:14.990Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -328,12 +328,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1588,
+                      "duration": 1281,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:23.453Z",
+                      "startTime": "2025-07-23T14:11:14.988Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -359,15 +359,15 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1395,
+                      "duration": 1186,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:24.973Z",
+                      "startTime": "2025-07-23T14:11:16.513Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -393,15 +393,15 @@
                   "projectName": "Mobile Chrome",
                   "results": [
                     {
-                      "workerIndex": 5,
+                      "workerIndex": 6,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 859,
+                      "duration": 885,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:24.973Z",
+                      "startTime": "2025-07-23T14:11:16.473Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -430,12 +430,12 @@
                       "workerIndex": 7,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1658,
+                      "duration": 1756,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:26.163Z",
+                      "startTime": "2025-07-23T14:11:17.229Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -461,15 +461,15 @@
                   "projectName": "Mobile Safari",
                   "results": [
                     {
-                      "workerIndex": 12,
+                      "workerIndex": 8,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 647,
+                      "duration": 823,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:31.972Z",
+                      "startTime": "2025-07-23T14:11:18.217Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -495,15 +495,15 @@
                   "projectName": "Mobile Safari",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1457,
+                      "duration": 1883,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:26.933Z",
+                      "startTime": "2025-07-23T14:11:18.409Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -529,10 +529,10 @@
                   "projectName": "Microsoft Edge",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 4,
+                      "workerIndex": 10,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge\nRun \"npx playwright install msedge\"",
                         "stack": "Error: browserType.launch: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge\nRun \"npx playwright install msedge\""
@@ -545,7 +545,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:31.968Z",
+                      "startTime": "2025-07-23T14:11:19.530Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -571,8 +571,8 @@
                   "projectName": "Microsoft Edge",
                   "results": [
                     {
-                      "workerIndex": 9,
-                      "parallelIndex": 3,
+                      "workerIndex": 13,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 1,
                       "error": {
@@ -587,7 +587,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:28.975Z",
+                      "startTime": "2025-07-23T14:11:19.700Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -614,14 +614,14 @@
                   "results": [
                     {
                       "workerIndex": 11,
-                      "parallelIndex": 2,
+                      "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1388,
+                      "duration": 766,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:29.032Z",
+                      "startTime": "2025-07-23T14:11:19.561Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -647,15 +647,15 @@
                   "projectName": "Google Chrome",
                   "results": [
                     {
-                      "workerIndex": 10,
-                      "parallelIndex": 0,
+                      "workerIndex": 12,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3377,
+                      "duration": 756,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T08:01:29.030Z",
+                      "startTime": "2025-07-23T14:11:19.649Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -675,8 +675,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-07-23T08:01:22.914Z",
-    "duration": 10209.224,
+    "startTime": "2025-07-23T14:11:14.267Z",
+    "duration": 6680.747,
     "expected": 12,
     "skipped": 0,
     "unexpected": 2,
