@@ -29,7 +29,7 @@ const GlassInput = forwardRef<HTMLInputElement, GlassInputProps>(
     ...props
   }, ref) => {
     const inputClasses = clsx(
-      'backdrop-blur-sm bg-glass-light border border-glass rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
+      'glass-input-dark transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
       {
         // Variants
         'shadow-glass': variant === 'default',
@@ -84,7 +84,7 @@ const GlassInput = forwardRef<HTMLInputElement, GlassInputProps>(
         transition={{ duration: 0.2, ease: 'easeOut' }}
       >
         {label && (
-          <label className="block text-sm font-medium text-gray-100 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             {label}
           </label>
         )}
@@ -99,7 +99,7 @@ const GlassInput = forwardRef<HTMLInputElement, GlassInputProps>(
           
           {Icon && (
             <div className={clsx(
-              'absolute top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none',
+              'absolute top-1/2 transform -translate-y-1/2 text-gray-300 pointer-events-none',
               iconPositionClasses[iconPosition][size]
             )}>
               <Icon size={iconSize} />
@@ -107,7 +107,7 @@ const GlassInput = forwardRef<HTMLInputElement, GlassInputProps>(
           )}
           
           {/* Glass effect overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 pointer-events-none rounded-lg" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none rounded-lg" />
         </div>
         
         {(error || helper) && (

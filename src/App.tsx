@@ -106,19 +106,28 @@ function AppContent() {
                 <div>
                   <h2 className="text-2xl font-bold mb-4">Welcome to Your Family Dashboard</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <GlassCard variant="elevated" className="p-6">
-                      <h3 className="text-xl font-semibold text-white mb-2">Total Tasks</h3>
-                      <p className="text-3xl font-bold text-blue-300">{state.tasks.length}</p>
+                    <GlassCard className="p-6 stat-gradient-dark-1 animate-slide-in animate-delay-1 glow-purple">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-300">Total Tasks</h3>
+                      </div>
+                      <p className="text-3xl font-bold text-white">{state.tasks.length}</p>
+                      <p className="text-sm text-gray-400 mt-1">tasks created</p>
                     </GlassCard>
                     
-                    <GlassCard variant="elevated" className="p-6">
-                      <h3 className="text-xl font-semibold text-white mb-2">Categories</h3>
-                      <p className="text-3xl font-bold text-purple-300">{state.categories.length}</p>
+                    <GlassCard className="p-6 stat-gradient-dark-2 animate-slide-in animate-delay-2 glow-pink">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-300">Categories</h3>
+                      </div>
+                      <p className="text-3xl font-bold text-white">{state.categories.length}</p>
+                      <p className="text-sm text-gray-400 mt-1">categories active</p>
                     </GlassCard>
                     
-                    <GlassCard variant="elevated" className="p-6">
-                      <h3 className="text-xl font-semibold text-white mb-2">Family Members</h3>
-                      <p className="text-3xl font-bold text-pink-300">2</p>
+                    <GlassCard className="p-6 stat-gradient-dark-3 animate-slide-in animate-delay-3 glow-blue">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium text-gray-300">Family Members</h3>
+                      </div>
+                      <p className="text-3xl font-bold text-white">2</p>
+                      <p className="text-sm text-gray-400 mt-1">family members</p>
                     </GlassCard>
                   </div>
 
@@ -149,8 +158,13 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800">
-      <div className="flex h-screen">
+    <div className="relative text-white">
+      {/* Gradient mesh background */}
+      <div className="gradient-bg"></div>
+      
+      {/* Main container */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        <div className="flex h-screen">
         {/* Desktop Sidebar Navigation */}
         <div className="hidden md:block w-64 p-4">
           <GlassNavigation
@@ -166,7 +180,7 @@ function AppContent() {
         <div className="flex-1 flex flex-col">
           {/* Header */}
           <header className="p-4 md:p-6">
-            <GlassCard className="p-4 md:p-6">
+            <GlassCard className="p-4 md:p-6 glass-header-dark animate-slide-in">
               <div className="flex items-center justify-between">
                 {/* Mobile Navigation */}
                 <div className="md:hidden">
@@ -224,6 +238,7 @@ function AppContent() {
           <main className="flex-1 p-4 md:p-6 overflow-auto">
             {renderCurrentView()}
           </main>
+        </div>
         </div>
       </div>
 

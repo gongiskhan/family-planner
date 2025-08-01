@@ -16,38 +16,22 @@ export interface GlassCardProps {
 const GlassCard: React.FC<GlassCardProps> = ({
   children,
   variant = 'default',
-  blur = 'md',
+  blur = 'md', 
   opacity = 'light',
   className,
   animate = true,
   onClick,
   hover = false,
 }) => {
+  // Note: variant, blur, and opacity are kept for API compatibility
+  // but currently using unified dark theme classes
+  void variant; void blur; void opacity; // Suppress TS warnings
+  
   const baseClasses = clsx(
-    'relative overflow-hidden transition-all duration-300',
+    'glass-card-dark rounded-2xl',
     {
-      // Variants
-      'backdrop-blur-md bg-glass-light border border-glass rounded-glass shadow-glass':
-        variant === 'default',
-      'backdrop-blur-lg bg-glass-medium border border-glass rounded-glass-lg shadow-glass-elevated':
-        variant === 'elevated',
-      'backdrop-blur-xl bg-glass-heavy border border-glass-dark rounded-glass-xl shadow-glass-elevated':
-        variant === 'floating',
-
-      // Blur levels
-      'backdrop-blur-sm': blur === 'sm',
-      'backdrop-blur-md': blur === 'md',
-      'backdrop-blur-lg': blur === 'lg',
-      'backdrop-blur-xl': blur === 'xl',
-
-      // Opacity levels
-      'bg-glass-light': opacity === 'light',
-      'bg-glass-medium': opacity === 'medium',
-      'bg-glass-heavy': opacity === 'heavy',
-
       // Interactive states
-      'cursor-pointer hover:shadow-glass-elevated hover:scale-[1.02] active:scale-[0.98]':
-        onClick || hover,
+      'cursor-pointer': onClick || hover,
     },
     className
   );

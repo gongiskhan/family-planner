@@ -6,6 +6,8 @@ export { default as GlassModal } from './GlassModal';
 export { default as GlassNavigation } from './GlassNavigation';
 export { default as GlassCheckbox } from './GlassCheckbox';
 export { default as BulkOperationsToolbar } from './BulkOperationsToolbar';
+export { default as TouchCard } from './TouchCard';
+export { default as PullToRefresh } from './PullToRefresh';
 export { GlassBarChart, GlassPieChart, GlassProgressRing } from './GlassChart';
 
 export type { GlassCardProps } from './GlassCard';
@@ -16,4 +18,6 @@ export type { GlassModalProps } from './GlassModal';
 export type { GlassNavigationProps, NavigationItem } from './GlassNavigation';
 export type { GlassCheckboxProps } from './GlassCheckbox';
 export type { BulkOperationsToolbarProps, BulkAction } from './BulkOperationsToolbar';
+export type { TouchCardProps, TouchAction } from './TouchCard';
+export type { PullToRefreshProps } from './PullToRefresh';
 export type { ChartDataPoint, GlassBarChartProps, GlassPieChartProps, GlassProgressRingProps } from './GlassChart';

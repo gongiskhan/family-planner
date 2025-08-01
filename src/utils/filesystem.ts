@@ -1,4 +1,5 @@
-import { TaskDataFile, FamilySettings, Category } from '@/types';
+import { TaskDataFile, FamilySettings, Category, Task, TaskFrequency } from '@/types';
+import { updateTaskCalculations } from '@/utils/taskCalculations';
 
 // File System Service for Node.js backend
 export class FileSystemService {
@@ -221,47 +222,196 @@ export class FileSystemService {
     const defaultCategories: Category[] = [
       {
         id: 'laura-care',
-        name: '👶 Laura Care (1.5 years)',
+        name: '👶 Cuidados com Laura (1,5 anos)',
         icon: '👶',
         color: '#FEF3C7',
-        description: 'Daily care tasks for Laura',
+        description: 'Cuidados diários com a Laura',
         taskCount: 0
       },
       {
         id: 'diogo-care',
-        name: '👦 Diogo Care (5 years)',
+        name: '👦 Cuidados com Diogo (5 anos)',
         icon: '👦',
         color: '#DBEAFE',
-        description: 'Daily care tasks for Diogo',
+        description: 'Cuidados diários com o Diogo',
         taskCount: 0
       },
       {
         id: 'household',
-        name: '🏠 Household Coordination',
+        name: '🏠 Coordenação Empregada & Casa',
         icon: '🏠',
         color: '#D1FAE5',
-        description: 'House management and coordination',
+        description: 'Gestão da casa e coordenação',
         taskCount: 0
       },
       {
         id: 'financial',
-        name: '💰 Financial & Administrative',
+        name: '💰 Questões Financeiras & Administrativas',
         icon: '💰',
         color: '#FEE2E2',
-        description: 'Financial and administrative tasks',
+        description: 'Questões financeiras e administrativas',
+        taskCount: 0
+      },
+      {
+        id: 'shopping',
+        name: '🛒 Compras & Logística',
+        icon: '🛒',
+        color: '#E0E7FF',
+        description: 'Compras e logística familiar',
+        taskCount: 0
+      },
+      {
+        id: 'transport',
+        name: '🚗 Transporte & Veículos',
+        icon: '🚗',
+        color: '#F3E8FF',
+        description: 'Gestão de transportes e veículos',
+        taskCount: 0
+      },
+      {
+        id: 'clothing',
+        name: '👕 Gestão Roupa',
+        icon: '👕',
+        color: '#FDF2F8',
+        description: 'Gestão e organização de roupa',
+        taskCount: 0
+      },
+      {
+        id: 'family-development',
+        name: '👨‍👩‍👧‍👦 Desenvolvimento Familiar',
+        icon: '👨‍👩‍👧‍👦',
+        color: '#F0FDF4',
+        description: 'Atividades e desenvolvimento familiar',
         taskCount: 0
       }
     ];
+
+    const defaultTasks: Omit<Task, 'id' | 'monthlyPoints' | 'assignment' | 'createdAt' | 'updatedAt'>[] = [
+      // 👶 Cuidados com Laura (1,5 anos) - 21 tasks
+      { title: 'Dar pequeno-almoço à Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Dar jantar à Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Dar lanche manhã à Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Dar lanche tarde à Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Mudar fralda - manhã', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Mudar fralda - tarde', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Mudar fralda - noite', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Mudar fraldas extra (3-4x)', category: 'laura-care', frequency: '4x/dia' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Vestir Laura de manhã', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Vestir Laura após banho', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Dar banho à Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Escovar dentes Laura', category: 'laura-care', frequency: '2x/dia' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Rotina sono Laura (sesta)', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Rotina sono Laura (noite)', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Supervisão segurança Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Atividades desenvolvimento Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Leitura com Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Tempo exterior com Laura', category: 'laura-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Consultas médicas Laura', category: 'laura-care', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Compras roupa Laura', category: 'laura-care', frequency: 'trimestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Pesquisa alimentação Laura', category: 'laura-care', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 👦 Cuidados com Diogo (5 anos) - 17 tasks
+      { title: 'Dar pequeno-almoço ao Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Dar jantar ao Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Lanche manhã Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Lanche tarde Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Vestir Diogo de manhã', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Dar banho ao Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Escovar dentes Diogo', category: 'diogo-care', frequency: '2x/dia' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Levar Diogo à escola', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Buscar Diogo à escola', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Ajuda trabalhos casa Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Leitura com Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Rotina sono Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Atividades educativas Diogo', category: 'diogo-care', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Comunicação escola Diogo', category: 'diogo-care', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Atividades extra Diogo', category: 'diogo-care', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Consultas médicas Diogo', category: 'diogo-care', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Gestão assuntos saúde Diogo', category: 'diogo-care', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 🏠 Coordenação Empregada & Casa - 10 tasks
+      { title: 'Planear jantar diário', category: 'household', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Orientar tarefas empregada', category: 'household', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Verificar qualidade limpeza', category: 'household', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Coordenar limpeza profunda escritório', category: 'household', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Orientar limpeza roupeiros', category: 'household', frequency: 'quinzenal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Coordenar limpeza vidros exteriores', category: 'household', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Gerir stock produtos limpeza', category: 'household', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Orientar cuidados objectos delicados', category: 'household', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Coordenar organização despensa', category: 'household', frequency: 'quinzenal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Supervisão limpeza zona crianças', category: 'household', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 💰 Questões Financeiras & Administrativas - 13 tasks
+      { title: 'Pagamento salário empregada', category: 'financial', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Pagamento Segurança Social empregada', category: 'financial', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Gestão férias empregada', category: 'financial', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Contrato manutenção piscina', category: 'financial', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Supervisão limpeza piscina semanal', category: 'financial', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Manutenção jardim - poda', category: 'financial', frequency: 'trimestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Manutenção jardim - relva', category: 'financial', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Pagamento seguros casa', category: 'financial', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'IMI e taxas municipais', category: 'financial', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Condomínio (se aplicável)', category: 'financial', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Revisão sistema alarme', category: 'financial', frequency: 'semestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Manutenção equipamentos casa', category: 'financial', frequency: 'trimestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Gestão orçamento familiar', category: 'financial', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 🛒 Compras & Logística - 7 tasks
+      { title: 'Fazer lista compras', category: 'shopping', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Ir ao supermercado', category: 'shopping', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Compras farmácia', category: 'shopping', frequency: 'quinzenal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Compras produtos bebé Laura', category: 'shopping', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Material escolar Diogo', category: 'shopping', frequency: 'trimestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Marcar consultas médicas', category: 'shopping', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Organizar documentos importantes', category: 'shopping', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 🚗 Transporte & Veículos - 7 tasks
+      { title: 'Lavar carro', category: 'transport', frequency: 'quinzenal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Abastecer carro', category: 'transport', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Manutenção carro', category: 'transport', frequency: 'semestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Seguro automóvel', category: 'transport', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Inspeção automóvel', category: 'transport', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Organizar agenda familiar', category: 'transport', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Coordenar babysitter', category: 'transport', frequency: 'mensal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 👕 Gestão Roupa - 4 tasks
+      { title: 'Supervisão lavandaria empregada', category: 'clothing', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Passar ferro roupa trabalho', category: 'clothing', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Compras roupa família', category: 'clothing', frequency: 'trimestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Organização roupeiros sazonais', category: 'clothing', frequency: 'semestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+
+      // 👨‍👩‍👧‍👦 Desenvolvimento Familiar - 8 tasks
+      { title: 'Planear atividades fim semana', category: 'family-development', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Tempo qualidade c/ ambas crianças', category: 'family-development', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Mediar conflitos irmãos', category: 'family-development', frequency: 'diária' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Planear festas aniversário', category: 'family-development', frequency: 'anual' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Contacto família alargada', category: 'family-development', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Pesquisa atividades crianças', category: 'family-development', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Registo memórias (fotos, vídeos)', category: 'family-development', frequency: 'semanal' as TaskFrequency, points: { goncalo: 0, marilia: 0 } },
+      { title: 'Planear férias familiares', category: 'family-development', frequency: 'semestral' as TaskFrequency, points: { goncalo: 0, marilia: 0 } }
+    ];
+
+    // Create Task objects with proper structure and calculate monthly points
+    const tasksWithDetails: Task[] = defaultTasks.map((task, index) => {
+      const baseTask: Task = {
+        id: `task-${index + 1}`,
+        ...task,
+        monthlyPoints: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      return updateTaskCalculations(baseTask);
+    });
 
     return {
       version: '1.0.0',
       familyId,
       lastModified: new Date().toISOString(),
-      tasks: [],
+      tasks: tasksWithDetails,
       categories: defaultCategories,
       settings: defaultSettings,
       metadata: {
-        totalTasks: 0,
+        totalTasks: tasksWithDetails.length,
         lastBackup: '',
         checksum: ''
       }

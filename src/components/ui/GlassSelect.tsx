@@ -37,7 +37,7 @@ const GlassSelect = forwardRef<HTMLSelectElement, GlassSelectProps>(
     ...props
   }, ref) => {
     const selectClasses = clsx(
-      'backdrop-blur-sm bg-glass-light border border-glass rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed appearance-none cursor-pointer',
+      'glass-input-dark appearance-none cursor-pointer transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
       {
         // Variants
         'shadow-glass': variant === 'default',

@@ -1,0 +1,89 @@
+:root {
+  /* Core Colors - Cool, sophisticated palette */
+  --background: oklch(0.9804 0.0039 247.8584);
+  --foreground: oklch(0.1569 0.0039 247.8584);
+  --card: oklch(1.0000 0.0000 0.0000 / 0.72);
+  --card-foreground: oklch(0.1765 0.0039 247.8584);
+  --popover: oklch(1.0000 0.0000 0.0000 / 0.88);
+  --popover-foreground: oklch(0.1569 0.0039 247.8584);
+  
+  /* Primary - Vibrant blue like iOS */
+  --primary: oklch(0.5294 0.2431 252.5424);
+  --primary-foreground: oklch(1.0000 0.0000 0.0000);
+  
+  /* Secondary - Soft gray */
+  --secondary: oklch(0.9412 0.0039 247.8584);
+  --secondary-foreground: oklch(0.2353 0.0039 247.8584);
+  
+  /* Semantic Colors */
+  --muted: oklch(0.9608 0.0039 247.8584 / 0.5);
+  --muted-foreground: oklch(0.4510 0.0039 247.8584);
+  --accent: oklch(0.5294 0.2431 252.5424 / 0.1);
+  --accent-foreground: oklch(0.5294 0.2431 252.5424);
+  --destructive: oklch(0.5373 0.2373 25.6493);
+  --destructive-foreground: oklch(1.0000 0.0000 0.0000);
+  
+  /* UI Elements */
+  --border: oklch(0.8824 0.0039 247.8584 / 0.2);
+  --input: oklch(1.0000 0.0000 0.0000 / 0.5);
+  --ring: oklch(0.5294 0.2431 252.5424 / 0.5);
+  
+  /* Glass Effects */
+  --glass-background: oklch(1.0000 0.0000 0.0000 / 0.72);
+  --glass-border: oklch(1.0000 0.0000 0.0000 / 0.18);
+  --glass-shadow: oklch(0.0000 0.0000 0.0000 / 0.1);
+  
+  /* Chart Colors - Vibrant palette */
+  --chart-1: oklch(0.5294 0.2431 252.5424);
+  --chart-2: oklch(0.6275 0.2353 142.4953);
+  --chart-3: oklch(0.5490 0.2353 328.3634);
+  --chart-4: oklch(0.6863 0.1961 85.8743);
+  --chart-5: oklch(0.5098 0.2353 25.6493);
+  
+  /* Sidebar */
+  --sidebar: oklch(1.0000 0.0000 0.0000 / 0.88);
+  --sidebar-foreground: oklch(0.1569 0.0039 247.8584);
+  --sidebar-primary: oklch(0.5294 0.2431 252.5424);
+  --sidebar-primary-foreground: oklch(1.0000 0.0000 0.0000);
+  --sidebar-accent: oklch(0.5294 0.2431 252.5424 / 0.1);
+  --sidebar-accent-foreground: oklch(0.5294 0.2431 252.5424);
+  --sidebar-border: oklch(0.8824 0.0039 247.8584 / 0.2);
+  --sidebar-ring: oklch(0.5294 0.2431 252.5424 / 0.5);
+  
+  /* Typography - SF Pro inspired */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "New York", "Georgia", serif;
+  --font-mono: "SF Mono", "Monaco", "Cascadia Code", "Roboto Mono", monospace;
+  
+  /* Spacing & Radius */
+  --radius: 1rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.5rem;
+  --spacing: 0.25rem;
+  
+  /* Shadows - Soft and layered */
+  --shadow-2xs: 0 1px 2px 0 oklch(0.0000 0.0000 0.0000 / 0.03), 0 1px 3px 0 oklch(0.0000 0.0000 0.0000 / 0.04);
+  --shadow-xs: 0 2px 4px 0 oklch(0.0000 0.0000 0.0000 / 0.03), 0 3px 6px 0 oklch(0.0000 0.0000 0.0000 / 0.04);
+  --shadow-sm: 0 4px 6px -1px oklch(0.0000 0.0000 0.0000 / 0.04), 0 2px 4px -1px oklch(0.0000 0.0000 0.0000 / 0.03);
+  --shadow: 0 10px 15px -3px oklch(0.0000 0.0000 0.0000 / 0.04), 0 4px 6px -2px oklch(0.0000 0.0000 0.0000 / 0.03);
+  --shadow-md: 0 20px 25px -5px oklch(0.0000 0.0000 0.0000 / 0.04), 0 10px 10px -5px oklch(0.0000 0.0000 0.0000 / 0.03);
+  --shadow-lg: 0 25px 50px -12px oklch(0.0000 0.0000 0.0000 / 0.08);
+  --shadow-xl: 0 35px 60px -15px oklch(0.0000 0.0000 0.0000 / 0.1);
+  --shadow-2xl: 0 50px 100px -20px oklch(0.0000 0.0000 0.0000 / 0.15);
+  
+  /* Glass-specific shadows */
+  --shadow-glass: 0 8px 32px 0 oklch(0.0000 0.0000 0.0000 / 0.1);
+  --shadow-glass-hover: 0 12px 48px 0 oklch(0.0000 0.0000 0.0000 / 0.12);
+  
+  /* Tracking */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.02em;
+  
+  /* Backdrop filters */
+  --blur-glass: blur(20px);
+  --blur-glass-heavy: blur(40px);
+  --blur-glass-light: blur(10px);
+}

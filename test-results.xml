@@ -1,36 +1,36 @@
-<testsuites id="" name="" tests="14" failures="2" skipped="0" errors="0" time="6.680747">
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="chromium" tests="2" failures="0" skipped="0" time="1.624" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.813">
+<testsuites id="" name="" tests="14" failures="2" skipped="0" errors="0" time="6.872623000000001">
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="chromium" tests="2" failures="0" skipped="0" time="1.512" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.747">
 </testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="0.811">
-</testcase>
-</testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="firefox" tests="2" failures="0" skipped="0" time="3.844" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="1.807">
-</testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="2.037">
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="0.765">
 </testcase>
 </testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="webkit" tests="2" failures="0" skipped="0" time="2.467" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="1.281">
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="firefox" tests="2" failures="0" skipped="0" time="4.766" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="2.248">
 </testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="1.186">
-</testcase>
-</testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="0" time="2.641" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.885">
-</testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="1.756">
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="2.518">
 </testcase>
 </testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="Mobile Safari" tests="2" failures="0" skipped="0" time="2.706" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.823">
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="webkit" tests="2" failures="0" skipped="0" time="2.424" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="1.079">
 </testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="1.883">
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="1.345">
 </testcase>
 </testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="Microsoft Edge" tests="2" failures="2" skipped="0" time="0.003" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.002">
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="0" time="2.491" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.766">
+</testcase>
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="1.725">
+</testcase>
+</testsuite>
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="Mobile Safari" tests="2" failures="0" skipped="0" time="2.29" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.908">
+</testcase>
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="1.382">
+</testcase>
+</testsuite>
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="Microsoft Edge" tests="2" failures="2" skipped="0" time="0.003" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.001">
 <failure message="example.spec.ts:4:3 should load the application" type="FAILURE">
 <![CDATA[  [Microsoft Edge] › example.spec.ts:4:3 › Family Task Manager › should load the application ───────
 
@@ -39,7 +39,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="0.001">
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="0.002">
 <failure message="example.spec.ts:14:3 should have responsive design" type="FAILURE">
 <![CDATA[  [Microsoft Edge] › example.spec.ts:14:3 › Family Task Manager › should have responsive design ────
 
@@ -49,10 +49,10 @@
 </failure>
 </testcase>
 </testsuite>
-<testsuite name="example.spec.ts" timestamp="2025-07-23T14:11:14.662Z" hostname="Google Chrome" tests="2" failures="0" skipped="0" time="1.522" errors="0">
-<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.766">
+<testsuite name="example.spec.ts" timestamp="2025-07-30T17:03:18.344Z" hostname="Google Chrome" tests="2" failures="0" skipped="0" time="1.496" errors="0">
+<testcase name="Family Task Manager › should load the application" classname="example.spec.ts" time="0.73">
 </testcase>
-<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="0.756">
+<testcase name="Family Task Manager › should have responsive design" classname="example.spec.ts" time="0.766">
 </testcase>
 </testsuite>
 </testsuites>

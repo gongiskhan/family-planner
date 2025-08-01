@@ -51,7 +51,7 @@ const GlassModal = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-md" />
         </Transition.Child>
 
         {/* Modal Container */}
@@ -79,13 +79,16 @@ const GlassModal = ({
                 )}
               >
                 {/* Glass Modal Content */}
-                <div className="glass-modal relative">
+                <div className="glass-modal-dark relative">
+                  {/* Enhanced modal background for better contrast */}
+                  <div className="absolute inset-0 bg-black/20 backdrop-blur-xl border border-white/20 rounded-2xl" />
+                  
                   {/* Glass reflection effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50 pointer-events-none rounded-glass-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-30 pointer-events-none rounded-2xl" />
                   
                   {/* Header */}
                   {(title || showCloseButton) && (
-                    <div className="relative z-10 flex items-center justify-between p-6 border-b border-white/10">
+                    <div className="relative z-10 flex items-center justify-between p-6 border-b border-white/20 bg-black/10">
                       {title && (
                         <Dialog.Title
                           as="h3"
@@ -101,7 +104,7 @@ const GlassModal = ({
                           size="sm"
                           onClick={onClose}
                           icon={X}
-                          className="ml-auto"
+                          className="ml-auto bg-white/10 hover:bg-white/20"
                         >
                           <span className="sr-only">Close modal</span>
                         </GlassButton>
@@ -110,12 +113,12 @@ const GlassModal = ({
                   )}
 
                   {/* Content */}
-                  <div className="relative z-10 p-6">
+                  <div className="relative z-10 p-6 bg-black/5">
                     {children}
                   </div>
 
                   {/* Bottom highlight */}
-                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                 </div>
               </Dialog.Panel>
             </Transition.Child>

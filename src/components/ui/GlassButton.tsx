@@ -31,17 +31,12 @@ const GlassButton: React.FC<GlassButtonProps> = ({
   type = 'button',
 }) => {
   const baseClasses = clsx(
-    'relative inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden',
+    'relative inline-flex items-center justify-center font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden',
     {
       // Variants
-      'backdrop-blur-sm bg-blue-500/80 text-white border border-blue-400/30 hover:bg-blue-600/80 focus:ring-blue-500/50 shadow-glass':
-        variant === 'primary',
-      'backdrop-blur-sm bg-gray-500/60 text-gray-100 border border-gray-400/30 hover:bg-gray-600/60 focus:ring-gray-500/50 shadow-glass':
-        variant === 'secondary',
-      'backdrop-blur-sm bg-red-500/80 text-white border border-red-400/30 hover:bg-red-600/80 focus:ring-red-500/50 shadow-glass':
-        variant === 'destructive',
-      'backdrop-blur-sm bg-transparent text-gray-100 border border-white/20 hover:bg-white/10 focus:ring-white/50':
-        variant === 'ghost',
+      'primary-button-dark': variant === 'primary',
+      'glass-button-dark': variant === 'secondary' || variant === 'ghost',
+      'glass-button-dark bg-red-500/80 border-red-400/30 hover:bg-red-600/80': variant === 'destructive',
 
       // Sizes
       'px-3 py-1.5 text-sm': size === 'sm',

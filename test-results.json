@@ -192,12 +192,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 813,
+                      "duration": 747,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:14.986Z",
+                      "startTime": "2025-07-30T17:03:18.741Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -226,12 +226,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 811,
+                      "duration": 765,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:14.988Z",
+                      "startTime": "2025-07-30T17:03:18.707Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -260,12 +260,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 1807,
+                      "duration": 2248,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:14.989Z",
+                      "startTime": "2025-07-30T17:03:18.711Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -294,12 +294,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 2037,
+                      "duration": 2518,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:14.990Z",
+                      "startTime": "2025-07-30T17:03:18.718Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -328,12 +328,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1281,
+                      "duration": 1079,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:14.988Z",
+                      "startTime": "2025-07-30T17:03:18.721Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -362,12 +362,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1186,
+                      "duration": 1345,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:16.513Z",
+                      "startTime": "2025-07-30T17:03:20.154Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -396,12 +396,12 @@
                       "workerIndex": 6,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 885,
+                      "duration": 766,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:16.473Z",
+                      "startTime": "2025-07-30T17:03:20.120Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -430,12 +430,12 @@
                       "workerIndex": 7,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 1756,
+                      "duration": 1725,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:17.229Z",
+                      "startTime": "2025-07-30T17:03:20.642Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -464,12 +464,12 @@
                       "workerIndex": 8,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 823,
+                      "duration": 908,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:18.217Z",
+                      "startTime": "2025-07-30T17:03:21.972Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -498,12 +498,12 @@
                       "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1883,
+                      "duration": 1382,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:18.409Z",
+                      "startTime": "2025-07-30T17:03:22.299Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -529,10 +529,10 @@
                   "projectName": "Microsoft Edge",
                   "results": [
                     {
-                      "workerIndex": 10,
+                      "workerIndex": 11,
                       "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge\nRun \"npx playwright install msedge\"",
                         "stack": "Error: browserType.launch: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge\nRun \"npx playwright install msedge\""
@@ -545,7 +545,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:19.530Z",
+                      "startTime": "2025-07-30T17:03:23.515Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -574,7 +574,7 @@
                       "workerIndex": 13,
                       "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge\nRun \"npx playwright install msedge\"",
                         "stack": "Error: browserType.launch: Chromium distribution 'msedge' is not found at /Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge\nRun \"npx playwright install msedge\""
@@ -587,7 +587,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:19.700Z",
+                      "startTime": "2025-07-30T17:03:23.697Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -613,15 +613,15 @@
                   "projectName": "Google Chrome",
                   "results": [
                     {
-                      "workerIndex": 11,
+                      "workerIndex": 10,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 766,
+                      "duration": 730,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:19.561Z",
+                      "startTime": "2025-07-30T17:03:23.192Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -650,12 +650,12 @@
                       "workerIndex": 12,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 756,
+                      "duration": 766,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-07-23T14:11:19.649Z",
+                      "startTime": "2025-07-30T17:03:23.570Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -675,8 +675,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-07-23T14:11:14.267Z",
-    "duration": 6680.747,
+    "startTime": "2025-07-30T17:03:17.946Z",
+    "duration": 6872.6230000000005,
     "expected": 12,
     "skipped": 0,
     "unexpected": 2,

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Hub - Dark Glass Design</title>
+    
+    <!-- Import theme CSS -->
+    <link rel="stylesheet" href="apple_glass_theme.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom glass morphism styles - Dark theme */
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background: #0a0a0a;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Gradient mesh background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 219, 98, 0.2) 0%, transparent 50%);
+            filter: blur(100px);
+        }
+        
+        /* Dark glass card styles */
+        .glass-card-dark {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card-dark:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Header glass effect */
+        .glass-header-dark {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Tab bar glass effect */
+        .glass-tab-bar-dark {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 24px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Button styles */
+        .glass-button-dark {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            color: white;
+        }
+        
+        .glass-button-dark:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+        }
+        
+        .glass-button-dark:active {
+            transform: scale(0.98);
+        }
+        
+        /* Primary button */
+        .primary-button-dark {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px 0 rgba(102, 126, 234, 0.4);
+            border: none;
+        }
+        
+        .primary-button-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px 0 rgba(102, 126, 234, 0.6);
+        }
+        
+        /* Quick action cards */
+        .quick-action-card-dark {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .quick-action-card-dark:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Activity item */
+        .activity-item-dark {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .activity-item-dark:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
+        
+        /* Stat card gradient overlays */
+        .stat-gradient-dark-1 {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        
+        .stat-gradient-dark-2 {
+            background: linear-gradient(135deg, rgba(250, 112, 154, 0.2) 0%, rgba(254, 225, 64, 0.2) 100%);
+            border: 1px solid rgba(250, 112, 154, 0.3);
+        }
+        
+        .stat-gradient-dark-3 {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%);
+            border: 1px solid rgba(79, 172, 254, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+        
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+        
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+        
+        /* Tab indicator */
+        .tab-indicator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Glow effects */
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .glow-pink {
+            box-shadow: 0 0 20px rgba(250, 112, 154, 0.5);
+        }
+        
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+        }
+    </style>
+</head>
+<body class="relative text-white">
+    <!-- Gradient mesh background -->
+    <div class="gradient-bg"></div>
+    
+    <!-- Main container -->
+    <div class="relative z-10 min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="glass-header-dark px-6 py-4 animate-slide-in">
+            <div class="max-w-6xl mx-auto flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">Family Hub</h1>
+                    <p class="text-sm text-gray-300 mt-1">Good evening, Sarah ✨</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="glass-button-dark p-2 rounded-full">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                    </button>
+                    <button class="glass-button-dark p-2 rounded-full">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main content -->
+        <main class="flex-1 px-6 py-8 max-w-6xl mx-auto w-full">
+            <!-- Stats cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="glass-card-dark stat-gradient-dark-1 rounded-2xl p-6 animate-slide-in animate-delay-1 glow-purple">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-300">Today's Focus</h3>
+                        <i data-lucide="target" class="w-5 h-5 text-purple-400"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-white">3</p>
+                    <p class="text-sm text-gray-400 mt-1">tasks remaining</p>
+                </div>
+                
+                <div class="glass-card-dark stat-gradient-dark-2 rounded-2xl p-6 animate-slide-in animate-delay-2 glow-pink">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-300">This Week</h3>
+                        <i data-lucide="calendar" class="w-5 h-5 text-pink-400"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-white">12</p>
+                    <p class="text-sm text-gray-400 mt-1">tasks scheduled</p>
+                </div>
+                
+                <div class="glass-card-dark stat-gradient-dark-3 rounded-2xl p-6 animate-slide-in animate-delay-3 glow-blue">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-300">Upcoming</h3>
+                        <i data-lucide="clock" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-white">8</p>
+                    <p class="text-sm text-gray-400 mt-1">events this month</p>
+                </div>
+            </div>
+            
+            <!-- Quick actions -->
+            <div class="glass-card-dark rounded-2xl p-6 mb-8 animate-slide-in animate-delay-2">
+                <h2 class="text-lg font-semibold text-white mb-4">Quick Actions</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="quick-action-card-dark rounded-xl p-4 text-center">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-purple-500/20 flex items-center justify-center">
+                            <i data-lucide="plus" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Add Task</p>
+                    </div>
+                    
+                    <div class="quick-action-card-dark rounded-xl p-4 text-center">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-pink-500/20 flex items-center justify-center">
+                            <i data-lucide="calendar-plus" class="w-6 h-6 text-pink-400"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Schedule</p>
+                    </div>
+                    
+                    <div class="quick-action-card-dark rounded-xl p-4 text-center">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-blue-500/20 flex items-center justify-center">
+                            <i data-lucide="shopping-cart" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Shopping</p>
+                    </div>
+                    
+                    <div class="quick-action-card-dark rounded-xl p-4 text-center">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-green-500/20 flex items-center justify-center">
+                            <i data-lucide="home" class="w-6 h-6 text-green-400"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Chores</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activity stream -->
+            <div class="glass-card-dark rounded-2xl p-6 animate-slide-in animate-delay-3">
+                <h2 class="text-lg font-semibold text-white mb-4">Family Activity</h2>
+                <div class="space-y-3">
+                    <div class="activity-item-dark rounded-lg p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">👦</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-white">Alex completed "Math Homework"</p>
+                            <p class="text-xs text-gray-400">2 minutes ago</p>
+                        </div>
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                    </div>
+                    
+                    <div class="activity-item-dark rounded-lg p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">👩</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-white">Mom added "Grocery Shopping"</p>
+                            <p class="text-xs text-gray-400">15 minutes ago</p>
+                        </div>
+                        <i data-lucide="plus-circle" class="w-5 h-5 text-purple-400"></i>
+                    </div>
+                    
+                    <div class="activity-item-dark rounded-lg p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">👨</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-white">Dad scheduled "Family Movie Night"</p>
+                            <p class="text-xs text-gray-400">1 hour ago</p>
+                        </div>
+                        <i data-lucide="calendar" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Tab bar -->
+        <nav class="glass-tab-bar-dark px-6 py-2 animate-slide-in">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center justify-around relative">
+                    <button class="flex flex-col items-center py-2 px-4 relative group">
+                        <i data-lucide="home" class="w-6 h-6 text-purple-400 mb-1"></i>
+                        <span class="text-xs text-purple-400 font-medium">Home</span>
+                        <div class="tab-indicator absolute bottom-0 left-0 right-0 rounded-full"></div>
+                    </button>
+                    
+                    <button class="flex flex-col items-center py-2 px-4 group">
+                        <i data-lucide="clipboard-list" class="w-6 h-6 text-gray-500 mb-1 group-hover:text-gray-300"></i>
+                        <span class="text-xs text-gray-500 font-medium group-hover:text-gray-300">Tasks</span>
+                    </button>
+                    
+                    <button class="flex flex-col items-center py-2 px-4 group">
+                        <i data-lucide="users" class="w-6 h-6 text-gray-500 mb-1 group-hover:text-gray-300"></i>
+                        <span class="text-xs text-gray-500 font-medium group-hover:text-gray-300">Family</span>
+                    </button>
+                    
+                    <button class="flex flex-col items-center py-2 px-4 group">
+                        <i data-lucide="settings-2" class="w-6 h-6 text-gray-500 mb-1 group-hover:text-gray-300"></i>
+                        <span class="text-xs text-gray-500 font-medium group-hover:text-gray-300">Settings</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Add interactive animations
+        document.querySelectorAll('.quick-action-card-dark').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                }, 150);
+            });
+        });
+        
+        // Number counter animation
+        function animateNumber(element, target) {
+            let current = 0;
+            const increment = target / 30;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+        
+        // Animate numbers on load
+        window.addEventListener('load', () => {
+            const numbers = document.querySelectorAll('.text-3xl');
+            numbers.forEach(num => {
+                const target = parseInt(num.textContent);
+                num.textContent = '0';
+                setTimeout(() => {
+                    animateNumber(num, target);
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
